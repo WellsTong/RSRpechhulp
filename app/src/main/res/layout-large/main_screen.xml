@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main_screen"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.gaming.jeroen.rsrpechhulp.RSRMainActivity">
+
+    <android.support.v7.widget.Toolbar xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/main_bar"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:layout_gravity="end"
+        android:background="@drawable/btn_bg"
+        android:paddingEnd="10dp"
+        android:paddingStart="3dp"
+        android:title="@string/main_toolbar_text"
+        tools:context="com.gaming.jeroen.rsrpechhulp.RSRMainActivity">
+
+    </android.support.v7.widget.Toolbar>
+
+    <LinearLayout
+        android:id="@+id/fragment_placeholder"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/main_bg"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/alarm_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginBottom="20dip"
+            android:layout_marginLeft="@dimen/frame_padding"
+            android:layout_marginRight="@dimen/frame_padding"
+            android:background="@drawable/button_background_selector"
+            android:drawableStart="@drawable/main_btn_warning"
+            android:padding="10dp"
+            android:paddingEnd="@dimen/frame_padding"
+            android:paddingStart="@dimen/frame_padding"
+            android:text="@string/app_name"
+            android:textAllCaps="false"
+            android:textSize="@dimen/normal_text_size" />
+
+        <Button
+            android:id="@+id/info_button_large"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal|bottom"
+            android:layout_marginBottom="@dimen/frame_padding"
+            android:layout_marginLeft="@dimen/frame_padding"
+            android:layout_marginRight="@dimen/frame_padding"
+            android:background="@drawable/button_background_selector"
+            android:drawableStart="@drawable/main_i"
+            android:paddingEnd="@dimen/frame_padding"
+            android:paddingStart="@dimen/frame_padding"
+            android:text="@string/over_rsr_text"
+            android:textAllCaps="false"
+            android:textSize="@dimen/normal_text_size" />
+
+    </LinearLayout>
+
+</LinearLayout>
+

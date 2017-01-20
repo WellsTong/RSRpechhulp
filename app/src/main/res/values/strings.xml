@@ -1,0 +1,42 @@
+<resources>
+    <string name="app_name">RSR Pechhulp</string>
+    <string name="main_toolbar_text">RSR Revalidatieservice</string>
+    <string name="over_rsr_text">Over RSR</string>
+    <string name="info_text">Met de hulpmiddelen van RSR blijft u mobiel. RSR is dé leverancier van
+        hulpmiddelen in de regio Noordoost-Nederland. Gedegen kennis en jarenlange ervaring zit
+        in ons DNA verweven en leidt tot het beste advies.\n\nWilt u meer weten over onze producten
+        en diensten, kijk dan op <a href="http://www.rsr.nl/">www.rsr.nl</a>  of bezoek onze showrooms
+        is Silvolde en Nieuweleusen. We zijn iedere werkdag geopend van 8.00 tot 17.00 uur. Hier kunt u
+        diverse hulpmiddelen uitproberen en rustig bekijken wat goed bij uw situatie aansluit. Samen
+        met u zoeken we naar het hulpmiddel dat bij u past. RSR maakt mensen mobiel. </string>
+
+    <string name="adres_text_map_popup">adres verkrijgen</string>
+    <string name="info_text_in_map_popup">Onthoud deze locatie voor het\ntelefoongesprek.</string>
+    <string name="text_uw_locatie">Uw Locatie:</string>
+    <string name="text_telefoon_button">Bel RSR nu</string>
+    <string name="service_not_available">service not available</string>
+    <string name="invalid_lat_long_used">Invalid Latitude Longitude</string>
+    <string name="no_address_found">No address found</string>
+    <string name="address_found">Address found</string>
+    <string name="bel_kosten_text">9,4 cent per gesprek plus 2,8 cent per minuut, plus uw gebruikelijke belkosten</string>
+    <string name="telephone_number_string">0900\u002D7788990</string>
+    <string name="telephone_number">09007788990</string>
+    <string name="tablet_text1">Neem contact op met RSR Nederland</string>
+    <string name="make_call_text">Bel nu</string>
+    <string name="belkosten_text">Belkosten</string>
+    <string name="annuleren_text">Annuleren</string>
+    <string name="toolbar_image_description">toolbar image</string>
+    <string name="telephone_image_description">telephone logo</string>
+    <string name="splash_logo_big_description">splash logo big</string>
+    <string name="splash_logo_small_description">splash logo small</string>
+    <string name="belkosten_info_large">Voor dit nummer betaalt u uw gebruikelijke belkosten.</string>
+    <string name="geen_internet">Geen internetverbinding\n\n
+        Er is geen verbinding mogelijk met het internet. Hierdoor kunnen uw locatiegegevens niet worden opgehaald
+    </string>
+    <string name="geen_gps">Locatieservices uitgeschakeld\n\nRSR Pechhulp heeft toegang tot uw locatie nodig.
+        Schakel locatietoegang in.</string>
+    <string name="info_background">info_background</string>
+    <string name="logo_large">logo_large</string>
+    <string name="picture_info_screen">picture_info_screen</string>
+    <string name="logo_telefoon">telefoon_logo</string>
+</resources>

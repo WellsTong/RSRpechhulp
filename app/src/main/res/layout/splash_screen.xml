@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/splash_screen"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@android:color/white"
+    tools:context="com.gaming.jeroen.rsrpechhulp.SplashActivity"
+    android:paddingTop="100dip"
+    android:paddingBottom="30dip">
+
+
+    <ImageView
+        android:id="@+id/splash_logo_big"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:src="@drawable/splash_logo"
+        android:contentDescription="@string/splash_logo_big_description"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentTop="true" />
+
+    <ImageView
+        android:id="@+id/splash_logo_small"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:contentDescription="@string/splash_logo_small_description"
+        android:src="@drawable/splash_logo_rsr"
+        android:layout_centerHorizontal="true"
+        android:baselineAlignBottom="false"
+        android:layout_alignParentBottom="true" />
+
+</RelativeLayout>

@@ -1,0 +1,120 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.google.android.gms.maps.MapView
+        android:id="@+id/map"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+    <LinearLayout
+        android:id="@+id/popup_map"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="130dp"
+        android:background="@drawable/popup_bg"
+        android:orientation="vertical">
+
+        <TextView
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="10dp"
+            android:text="@string/text_uw_locatie"
+            android:textAlignment="center"
+            android:textColor="@android:color/white"
+            android:textSize="@dimen/big_text_size"
+            android:textStyle="normal|bold" />
+
+        <TextView
+            android:id="@+id/adres_text_map"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:text="@string/adres_text_map_popup"
+            android:textAlignment="center"
+            android:textSize="@dimen/normal_text_size"
+            android:textStyle="normal|bold" />
+
+        <TextView
+            android:id="@+id/info_text_map"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:paddingBottom="10dp"
+            android:paddingTop="10dp"
+            android:text="@string/info_text_in_map_popup"
+            android:textAlignment="center"
+            android:textSize="@dimen/normal_text_size"
+            android:textStyle="normal|bold" />
+
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:id="@+id/telefoon_tablet_view"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginBottom="-20dp"
+        android:background="@drawable/popup_bg"
+        android:orientation="vertical"
+        android:padding="20dp">
+
+        <TextView
+            android:id="@+id/telefoon_text1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/white"
+            android:layout_gravity="center"
+            android:text="@string/tablet_text1"
+            android:textAlignment="center"
+            android:textSize="@dimen/normal_text_size" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:padding="30dp"
+                    android:orientation="horizontal"
+                    android:gravity="center">
+
+                    <ImageView
+                        android:id="@+id/telefoon_logo"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:padding="10dp"
+                        android:src="@drawable/main_btn_tel"
+                        android:contentDescription="@string/logo_telefoon" />
+
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textColor="@android:color/white"
+                        android:textSize="@dimen/big_text_size"
+                        android:text="@string/telephone_number_string"/>
+
+                </LinearLayout>
+
+        <TextView
+            android:id="@+id/telefoon_text2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@android:color/white"
+            android:layout_gravity="center_horizontal"
+            android:gravity="bottom"
+            android:paddingBottom="40dp"
+            android:text="@string/belkosten_info_large"
+            android:textAlignment="center"
+            android:textSize="@dimen/small_text_size" />
+
+    </LinearLayout>
+
+</RelativeLayout>

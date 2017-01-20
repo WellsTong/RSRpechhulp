@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:paddingLeft="@dimen/frame_padding"
+    android:paddingRight="@dimen/frame_padding"
+    android:paddingBottom="@dimen/frame_padding">
+
+    <Button
+        android:id="@+id/cancel_telephone_call"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/telephone_call_view"
+        android:includeFontPadding="true"
+        android:minHeight="0dp"
+        android:paddingStart="3dp"
+        android:paddingEnd="3dp"
+        android:background="@drawable/btn_bg"
+        android:text="@string/annuleren_text"
+        android:drawableStart="@drawable/main_btn_close"/>
+
+    <LinearLayout
+        android:id="@+id/telephone_call_view"
+        android:layout_width="match_parent"
+        android:layout_height="150dp"
+        android:layout_gravity="center_horizontal"
+        android:layout_alignParentBottom="true"
+        android:background="@color/RSRgroen"
+        android:orientation="vertical"
+        android:padding="5dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_gravity="center"
+            android:layout_weight="0.3"
+            android:paddingBottom="1dp"
+            android:text="@string/belkosten_text"
+            android:textColor="@android:color/white"
+            android:textAlignment="center"
+            android:textSize="@dimen/normal_text_size"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/belkosten_text_view"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_weight="0.3"
+           android:paddingBottom="3dp"
+            android:gravity="center"
+            android:text="@string/bel_kosten_text"
+            android:textAlignment="center"
+            android:textColor="@android:color/white" />
+
+        <Button
+            android:id="@+id/make_call_button"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="0.4"
+            android:background="@drawable/button_background_selector"
+            android:drawableStart="@drawable/main_btn_phone"
+            android:paddingStart="@dimen/frame_padding"
+            android:paddingEnd="@dimen/frame_padding"
+            android:maxHeight="10dp"
+            android:padding="5dp"
+            android:text="@string/text_telefoon_button"
+            android:textSize="@dimen/normal_text_size"
+            android:textAllCaps="false"
+            android:textColor="@android:color/white" />
+
+    </LinearLayout>
+
+</RelativeLayout>
