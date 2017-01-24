@@ -20,7 +20,7 @@
             android:value="AIzaSyAeahaEyoe7n3n8zm8Ex_qeaOcxgrbg0Sk" />
 
         <activity
-            android:name=".SplashActivity"
+            android:name=".activities.SplashActivity"
             android:screenOrientation="portrait"
             android:theme="@style/SplashScreenBackground">
             <intent-filter>
@@ -31,12 +31,12 @@
         </activity>
 
         <activity
-            android:name=".RSRMainActivity"
+            android:name=".activities.RSRMainActivity"
             android:screenOrientation="portrait"
             android:theme="@style/Theme.AppCompat.NoActionBar">
         </activity>
 
-        <service android:name=".FetchAddressService"
+        <service android:name=".service.FetchAddressService"
             android:exported="false"/>
 
     </application>

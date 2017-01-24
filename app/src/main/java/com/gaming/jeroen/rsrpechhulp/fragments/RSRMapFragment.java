@@ -1,4 +1,4 @@
-package com.gaming.jeroen.rsrpechhulp;
+package com.gaming.jeroen.rsrpechhulp.fragments;
 
 import android.content.Intent;
 import android.graphics.Bitmap;
@@ -14,10 +14,15 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.Toolbar;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.gaming.jeroen.rsrpechhulp.R;
+import com.gaming.jeroen.rsrpechhulp.activities.RSRMainActivity;
+import com.gaming.jeroen.rsrpechhulp.service.FetchAddressService;
+import com.gaming.jeroen.rsrpechhulp.util.Constants;
 import com.google.android.gms.maps.*;
 import com.google.android.gms.maps.model.BitmapDescriptorFactory;
 import com.google.android.gms.maps.model.CameraPosition;
@@ -35,12 +40,12 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 
 
-public class RSRMap extends Fragment implements
+public class RSRMapFragment extends Fragment implements
         OnMapReadyCallback,
         OnRequestPermissionsResultCallback,
         GoogleMap.OnCameraMoveListener {
 
-    private String TAG = "RSRMap";
+    private String TAG = "RSRMapFragment";
     private GoogleMap mMap;
     private MapView mapView;
     private Marker mapMarker, markerText;
@@ -56,20 +61,6 @@ public class RSRMap extends Fragment implements
     private FragmentTransaction transaction;
     private String addressString;
 
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
-        // zoom factor en bearing (angle) instellen voor map
-        this.zoom = 17f;
-        this.bearing = 0f;
-        this.customMarkerView = ((LayoutInflater) getActivity().getSystemService(
-                getActivity().LAYOUT_INFLATER_SERVICE))
-                .inflate(R.layout.popup_layout, null);
-
-        this.adresTextView = (TextView) customMarkerView.findViewById(R.id.adres_text_map);
-    }
-
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.map_layout, container, false);
         mapView = (MapView) v.findViewById(R.id.map);
@@ -77,16 +68,16 @@ public class RSRMap extends Fragment implements
         mapView.onResume();
         view = v;
 
-        // Mapinitializer initialiseren
-        try {
-            MapsInitializer.initialize(getActivity().getApplicationContext());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
+        initializeComponents(v);
 
-        // creëer googlemao asynchroon (buiten main thread)
-        mapView.getMapAsync(this);
+        return v;
+    }
 
+    private void initializeComponents(View v) {
+        initMap();
+        initTelephoneButton(v);
+        initValuesZoomAndBearing();
+        initAdresPopUpMarker();
         setAddress(addressString);
 
         // customize toolbar
@@ -96,16 +87,49 @@ public class RSRMap extends Fragment implements
         telephoneFragment = new TelephoneFragment();
 
         manager = getActivity().getSupportFragmentManager();
-
-        // als apparaaat telefoon heeft button initialiseren
-        if (RSRMainActivity.hasPhone) {
-            initTelephoneButton(v);
-        }
-        return v;
     }
+
+    private void initMap() {
+        // Mapinitializer initialiseren
+        try {
+            MapsInitializer.initialize(getActivity().getApplicationContext());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        // creëer googlemao asynchroon (buiten main thread)
+        mapView.getMapAsync(this);
+    }
+
+        // initialiseren adres popup
+    private void initAdresPopUpMarker() {
+        this.customMarkerView = ((LayoutInflater) getActivity().getSystemService(
+                getActivity().LAYOUT_INFLATER_SERVICE))
+                .inflate(R.layout.popup_layout, null);
+
+        this.adresTextView = (TextView) customMarkerView.findViewById(R.id.adres_text_map);
+    }
+
+    // waardes for zoom and bearing ophalen uit resources en instellen
+    private void initValuesZoomAndBearing() {
+        TypedValue zoomValue = new TypedValue();
+        getResources().getValue(R.dimen.zoom_value, zoomValue, true);
+        this.zoom = zoomValue.getFloat();
+
+        TypedValue bearingValue = new TypedValue();
+        getResources().getValue(R.dimen.bearing_value, bearingValue, true);
+        this.bearing = bearingValue.getFloat();
+
+        if(addressString == null){
+            this.addressString = getString(R.string.adres_text_map_popup);
+        }
+    }
+
 
     // initialiseren telefoon button
     private void initTelephoneButton(View v) {
+        if (!RSRMainActivity.hasPhone) return;
+
         telefoonButton = (Button) v.findViewById(R.id.call_button);
 
         telefoonButton.setOnClickListener(new View.OnClickListener() {
@@ -168,7 +192,7 @@ public class RSRMap extends Fragment implements
         CameraPosition cameraPosition = new CameraPosition(mapMarker.getPosition(), zoom, 0, bearing);
         mMap.moveCamera(CameraUpdateFactory.newCameraPosition(cameraPosition));
     }
-
+    // set custom marker
     public void setCustomMarker() {
         markerText = mMap.addMarker(new MarkerOptions()
                 .position(position)
@@ -176,6 +200,7 @@ public class RSRMap extends Fragment implements
                         .fromBitmap(getMarkerBitmapFromView())));
     }
 
+    // creëer bitmap voor adres popup
     private Bitmap getMarkerBitmapFromView() {
         customMarkerView.measure(View.MeasureSpec.UNSPECIFIED, View.MeasureSpec.UNSPECIFIED);
         customMarkerView.layout(0, 0, customMarkerView.getMeasuredWidth(), customMarkerView.getMeasuredHeight());
@@ -216,10 +241,10 @@ public class RSRMap extends Fragment implements
 
     // result receiver class om adres te ontvanger
     class AddressResultReceiver extends ResultReceiver {
-        private RSRMap rsrMap;
+        private RSRMapFragment rsrMap;
 
         // initialiseren met handler en view om direct adres string in adres view te zetten
-        AddressResultReceiver(Handler handler, RSRMap rsrMap) {
+        AddressResultReceiver(Handler handler, RSRMapFragment rsrMap) {
             super(handler);
             this.rsrMap = rsrMap;
         }

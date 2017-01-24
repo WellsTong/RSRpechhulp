@@ -1,17 +1,16 @@
-package com.gaming.jeroen.rsrpechhulp;
+package com.gaming.jeroen.rsrpechhulp.service;
 
 import android.app.IntentService;
 import android.content.Intent;
 import android.location.Address;
 import android.location.Geocoder;
-import android.location.Location;
 import android.os.Bundle;
-import android.os.Handler;
 import android.os.ResultReceiver;
 import android.text.TextUtils;
 import android.util.Log;
-import android.widget.TextView;
 
+import com.gaming.jeroen.rsrpechhulp.R;
+import com.gaming.jeroen.rsrpechhulp.util.Constants;
 import com.google.android.gms.maps.model.LatLng;
 
 import java.io.IOException;

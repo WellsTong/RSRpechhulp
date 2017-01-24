@@ -13,4 +13,14 @@
     <dimen name="padding_bottom">60dp</dimen>
     <dimen name="padding_bottom_telefoon_screen">57dp</dimen>
 
+    <item name="zoom_value" type="dimen" format="float">17.0</item>
+    <item name="bearing_value" type="dimen" format="float">0.0</item>
+
+    <integer name="update_time_start">0</integer>
+    <integer name="update_time_running">30000</integer>
+    <integer name="update_distance_start" >0</integer>
+    <integer name="update_distance_running">20</integer>
+    <integer name="array_list_size_to_start">10</integer>
+    <integer name="array_list_size_running">3</integer>
+
 </resources>

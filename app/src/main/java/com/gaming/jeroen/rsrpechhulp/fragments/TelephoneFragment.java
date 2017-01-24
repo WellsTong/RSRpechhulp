@@ -1,4 +1,4 @@
-package com.gaming.jeroen.rsrpechhulp;
+package com.gaming.jeroen.rsrpechhulp.fragments;
 
 
 import android.content.Intent;
@@ -11,6 +11,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.gaming.jeroen.rsrpechhulp.R;
+
 public class TelephoneFragment extends Fragment{
     private final String TAG = "TelephoneFragment";
 
@@ -22,12 +24,17 @@ public class TelephoneFragment extends Fragment{
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.telephone_screen, container, false);
 
+        initializeComponents(v);
+
+        return v;
+    }
+
+    private void initializeComponents(View v){
         //initialiseren buttons om te telefoneren of te cancellen
         initCallButton(v);
 
         //telefoonnummer string creëren
         telephoneNnumber = "tel:" + getResources().getString(R.string.telephone_number);
-        return v;
     }
 
     private void initCallButton(View v){

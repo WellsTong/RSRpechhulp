@@ -1,14 +1,16 @@
-package com.gaming.jeroen.rsrpechhulp;
+package com.gaming.jeroen.rsrpechhulp.fragments;
 
 import android.support.v4.app.Fragment;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.support.v7.widget.Toolbar;
 import android.widget.ImageButton;
+
+import com.gaming.jeroen.rsrpechhulp.R;
+import com.gaming.jeroen.rsrpechhulp.activities.RSRMainActivity;
 
 
 public class InfoFragment extends Fragment {

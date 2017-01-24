@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@android:color/white"
-    tools:context="com.gaming.jeroen.rsrpechhulp.SplashActivity"
+    tools:context="com.gaming.jeroen.rsrpechhulp.activities.SplashActivity"
     android:paddingTop="100dip"
     android:paddingBottom="30dip">
 
