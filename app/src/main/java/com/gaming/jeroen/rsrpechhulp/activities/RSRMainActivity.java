@@ -15,11 +15,9 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
-
 import com.gaming.jeroen.rsrpechhulp.util.LocationHelper;
 import com.gaming.jeroen.rsrpechhulp.R;
 import com.gaming.jeroen.rsrpechhulp.fragments.RSRMapFragment;
@@ -30,6 +28,7 @@ public class RSRMainActivity extends AppCompatActivity implements FragmentManage
     private FragmentManager manager;
     private Fragment infoFragment;
     private Button alarmButton;
+    private Button infoButton;
     private RSRMapFragment rsrMap;
     private LocationHelper locationHelper;
     public static boolean hasPhone;
@@ -133,9 +132,9 @@ public class RSRMainActivity extends AppCompatActivity implements FragmentManage
 
         // als apparaat geen telefoon magelijkheden heeft infobutton initiailiseren
         if (!RSRMainActivity.hasPhone) {
-            Button infoButtonLarge = (Button) this.findViewById(R.id.info_button_large);
+            infoButton = (Button) this.findViewById(R.id.info_button_large);
 
-            infoButtonLarge.setOnClickListener(new View.OnClickListener() {
+            infoButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
                     if (!infoFragment.isAdded()) {
@@ -234,10 +233,19 @@ public class RSRMainActivity extends AppCompatActivity implements FragmentManage
             if (alarmButton != null) {
                 alarmButton.setVisibility(View.VISIBLE);
             }
+
+            if (!hasPhone && infoButton != null){
+                infoButton.setVisibility(View.VISIBLE);
+            }
+
             setToolBar();
         } else {
             if (alarmButton != null) {
                 alarmButton.setVisibility(View.GONE);
+            }
+
+            if (!hasPhone && infoButton != null){
+                infoButton.setVisibility(View.GONE);
             }
         }
 

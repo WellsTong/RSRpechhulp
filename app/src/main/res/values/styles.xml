@@ -12,6 +12,9 @@
         <item name="android:textSize">15sp</item>
     </style>
 
-
+    <style name="SplashScreenBackground">
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:background">@color/whiteBackGround</item>
+    </style>
 
 </resources>

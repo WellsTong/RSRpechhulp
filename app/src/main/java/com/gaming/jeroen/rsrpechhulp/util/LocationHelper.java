@@ -14,11 +14,9 @@ import android.os.Bundle;
 import android.provider.Settings;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
-
 import com.gaming.jeroen.rsrpechhulp.R;
 import com.gaming.jeroen.rsrpechhulp.fragments.RSRMapFragment;
 import com.google.android.gms.maps.model.LatLng;
-
 import java.util.ArrayList;
 
 
@@ -187,9 +185,7 @@ public class LocationHelper implements LocationListener {
             updateDistance = context.getResources().getInteger(R.integer.update_distance_running);
             initLocationMananger();
         }
-
             rsrMap.updateLocation(newPosition);
-
     }
 
     @Override

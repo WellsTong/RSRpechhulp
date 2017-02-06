@@ -1,6 +1,5 @@
 package com.gaming.jeroen.rsrpechhulp.fragments;
 
-
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -23,7 +22,7 @@ public class TelephoneFragment extends Fragment{
     }
 
     private void initializeComponents(View v){
-        //initialiseren buttons om te telefoneren of te cancellen
+        // initialiseren buttons om te telefoneren of te cancellen
         initCallButton(v);
     }
 
@@ -47,6 +46,5 @@ public class TelephoneFragment extends Fragment{
                 getActivity().onBackPressed();
             }
         });
-
     }
 }

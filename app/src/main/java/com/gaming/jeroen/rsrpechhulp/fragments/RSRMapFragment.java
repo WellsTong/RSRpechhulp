@@ -43,7 +43,7 @@ public class RSRMapFragment extends Fragment implements
     private GoogleMap mMap;
     private MapView mapView;
     private Marker mapMarker, markerText;
-    private LatLng position = new LatLng(52, 4);
+    private LatLng position;
     private Fragment telephoneFragment;
     private View customMarkerView;
     private TextView adresTextView;
@@ -63,9 +63,16 @@ public class RSRMapFragment extends Fragment implements
     }
 
     private void initializeComponents(View v, ViewGroup container) {
+        if (this.position == null) {
+            this.position = new LatLng(
+                    getActivity().getResources().getInteger(R.integer.intial_latitude),
+                    getActivity().getResources().getInteger(R.integer.intial_longitude)
+            );
+        }
+
         initMap();
         initTelephoneButton(v);
-        initValuesZoomAndBearing();
+        initValuesZoomBearingAddress();
         initAdresPopUpMarker(container);
         setAddress(addressString);
 
@@ -86,7 +93,7 @@ public class RSRMapFragment extends Fragment implements
             e.printStackTrace();
         }
 
-        // creëer googlemao asynchroon (buiten main thread)
+        // creëer googlemap asynchroon (buiten main thread)
         mapView.getMapAsync(this);
     }
 
@@ -101,7 +108,7 @@ public class RSRMapFragment extends Fragment implements
     }
 
     // waardes for zoom and bearing ophalen uit resources en instellen
-    private void initValuesZoomAndBearing() {
+    private void initValuesZoomBearingAddress() {
         TypedValue zoomValue = new TypedValue();
         getResources().getValue(R.dimen.zoom_value, zoomValue, true);
         this.zoom = zoomValue.getFloat();
@@ -237,7 +244,8 @@ public class RSRMapFragment extends Fragment implements
 
     private void setAddress(String s) {
         this.addressString = s;
-        adresTextView.setText(s);
+        if (addressString != "")
+            adresTextView.setText(s);
     }
 
     // result receiver class om adres te ontvanger
