@@ -4,11 +4,17 @@
 
 
     <dimen name="text_padding">20dp</dimen>
-
     <dimen name="small_text_size">17sp</dimen>
     <dimen name="normal_text_size">20sp</dimen>
     <dimen name="big_text_size">25sp</dimen>
-
     <dimen name="frame_padding">100sp</dimen>
+    <dimen name="image_info_large_height">150dp</dimen>
+    <dimen name="alarm_button_large_padding">10dp</dimen>
+    <dimen name="telephone_view_large_padding">30dp</dimen>
+    <dimen name="logo_large_padding">10dp</dimen>
+    <dimen name="telephone_text2_large_padding_bottom">40dp</dimen>
+    <dimen name="splash_screen_large_padding_top">100dip</dimen>
+    <dimen name="splash_screen_large_padding_bottom">30dip</dimen>
+
 
 </resources>

@@ -27,7 +27,7 @@
         android:paddingLeft="@dimen/text_padding"
         android:paddingRight="@dimen/text_padding"
         android:paddingTop="@dimen/text_padding"
-        android:paddingBottom="20dp"
+        android:paddingBottom="@dimen/text_padding"
         android:background="@color/whiteBackGround"
         android:scrollbars="vertical"
         android:autoLink="web"
@@ -38,7 +38,7 @@
     <ImageView
         android:id="@+id/logo_image_info_screen_large"
         android:layout_width="wrap_content"
-        android:layout_height="150dp"
+        android:layout_height="@dimen/image_info_large_height"
         android:layout_gravity="center_horizontal"
         android:adjustViewBounds="true"
         android:scaleType="centerCrop"

@@ -13,7 +13,7 @@
 
     <Button
         android:id="@+id/call_button"
-        android:layout_width="280sp"
+        android:layout_width="@dimen/call_button_width"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
@@ -23,7 +23,7 @@
         android:drawableStart="@drawable/main_btn_tel"
         android:paddingStart="@dimen/frame_padding"
         android:paddingEnd="@dimen/frame_padding"
-        android:padding="10dp"
+        android:padding="@dimen/call_button_padding"
         android:text="@string/make_call_text"
         android:textSize="@dimen/normal_text_size"
         android:textAllCaps="false"

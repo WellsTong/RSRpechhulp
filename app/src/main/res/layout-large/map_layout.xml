@@ -35,7 +35,7 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:padding="30dp"
+                    android:padding="@dimen/telephone_view_large_padding"
                     android:orientation="horizontal"
                     android:gravity="center">
 
@@ -44,7 +44,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
-                        android:padding="10dp"
+                        android:padding="@dimen/logo_large_padding"
                         android:src="@drawable/main_btn_tel"
                         android:contentDescription="@string/logo_telefoon" />
 
@@ -65,7 +65,7 @@
             android:textColor="@android:color/white"
             android:layout_gravity="center_horizontal"
             android:gravity="bottom"
-            android:paddingBottom="40dp"
+            android:paddingBottom="@dimen/telephone_text2_large_padding_bottom"
             android:text="@string/belkosten_info_large"
             android:textAlignment="center"
             android:textSize="@dimen/small_text_size" />

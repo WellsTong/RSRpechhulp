@@ -7,8 +7,8 @@
     android:orientation="vertical"
     android:background="@android:color/white"
     tools:context="com.gaming.jeroen.rsrpechhulp.activities.SplashActivity"
-    android:paddingTop="100dip"
-    android:paddingBottom="30dip">
+    android:paddingTop="@dimen/splash_screen_large_padding_top"
+    android:paddingBottom="@dimen/splash_screen_large_padding_bottom">
 
 
     <ImageView

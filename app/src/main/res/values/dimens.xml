@@ -8,10 +8,33 @@
     <dimen name="frame_padding">30dp</dimen>
     <dimen name="alarm_button_margin_bottem">110dp</dimen>
     <dimen name="info_button_margin_button">30dp</dimen>
+    <dimen name="padding_start_toolbar">3dp</dimen>
+    <dimen name="padding_end_toolbar">10dp</dimen>
+    <dimen name="info_button_width">40dp</dimen>
+    <dimen name="info_button_height">40dp</dimen>
+    <dimen name="alarm_button_padding">10dp</dimen>
+    <dimen name="call_button_width">280sp</dimen>
+    <dimen name="call_button_padding">10dp</dimen>
+    <dimen name="popup_padding">10dp</dimen>
+    <dimen name="splashscreen_padding_top">100dip</dimen>
+    <dimen name="splashscreen_padding_bottom">30dip</dimen>
+    <dimen name="cancel_telephone_min_height">0dp</dimen>
+    <dimen name="cancel_telephone_padding">3dp</dimen>
+    <dimen name="telephone_view_height">150dp</dimen>
+    <dimen name="telephone_view_padding">5dp</dimen>
+    <dimen name="zero_dp">0dp</dimen>
+    <dimen name="belkosten_view_padding_bottom">1dp</dimen>
+    <dimen name="belkosten_text_padding_bottom">3dp</dimen>
+    <dimen name="call_button_max_height">10dp</dimen>
+    <dimen name="call_button_view_padding">5dp</dimen>
+
 
     <item name="zoom_value" type="dimen" format="float">17.0</item>
     <item name="bearing_value" type="dimen" format="float">0.0</item>
 
+    <integer name="telephone_view_weight_sum">10</integer>
+    <integer name="telephone_text_weight">3</integer>
+    <integer name="telephone_call_weight">4</integer>
     <integer name="zero">0</integer>
     <integer name="number_of_addresses">1</integer>
     <integer name="faillure_result">1</integer>
