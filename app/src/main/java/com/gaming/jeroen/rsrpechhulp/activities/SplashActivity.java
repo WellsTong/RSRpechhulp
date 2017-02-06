@@ -16,7 +16,6 @@ public class SplashActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.splash_screen);
 
-        int SPLASH_TIME = 800;
         new Handler().postDelayed(new Runnable() {
 
             @Override
@@ -24,6 +23,6 @@ public class SplashActivity extends Activity {
                 startActivity(new Intent(SplashActivity.this, RSRMainActivity.class));
                 SplashActivity.this.finish();
             }
-        }, SPLASH_TIME);
+        },  getResources().getInteger(R.integer.splash_time));
     }
 }
