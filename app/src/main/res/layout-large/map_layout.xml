@@ -99,7 +99,7 @@
                         android:layout_height="wrap_content"
                         android:textColor="@android:color/white"
                         android:textSize="@dimen/big_text_size"
-                        android:text="@string/telephone_number_string"/>
+                        android:text="@string/telephone_number_text"/>
 
                 </LinearLayout>
 

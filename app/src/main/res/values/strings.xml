@@ -11,22 +11,22 @@
         met u zoeken we naar het hulpmiddel dat bij u past. RSR maakt mensen mobiel. </string>
 
     <string name="adres_text_map_popup">adres verkrijgen</string>
+    <string name="probeer_opnieuw_text">Probeer opnieuw</string>
+    <string name="gps_alert_positve_button_text">Ga naar instellingen</string>
     <string name="info_text_in_map_popup">Onthoud deze locatie voor het\ntelefoongesprek.</string>
     <string name="text_uw_locatie">Uw Locatie:</string>
     <string name="text_telefoon_button">Bel RSR nu</string>
     <string name="service_not_available">service not available</string>
     <string name="invalid_lat_long_used">Invalid Latitude Longitude</string>
     <string name="no_address_found">No address found</string>
-    <string name="address_found">Address found</string>
     <string name="bel_kosten_text">9,4 cent per gesprek plus 2,8 cent per minuut, plus uw gebruikelijke belkosten</string>
-    <string name="telephone_number_string">0900\u002D7788990</string>
-    <string name="telephone_number">09007788990</string>
+    <string name="telephone_number_text">0900\u002D7788990</string>
+    <string name="telephone_number">tel:09007788990</string>
     <string name="tablet_text1">Neem contact op met RSR Nederland</string>
     <string name="make_call_text">Bel nu</string>
     <string name="belkosten_text">Belkosten</string>
     <string name="annuleren_text">Annuleren</string>
     <string name="toolbar_image_description">toolbar image</string>
-    <string name="telephone_image_description">telephone logo</string>
     <string name="splash_logo_big_description">splash logo big</string>
     <string name="splash_logo_small_description">splash logo small</string>
     <string name="belkosten_info_large">Voor dit nummer betaalt u uw gebruikelijke belkosten.</string>
@@ -39,4 +39,7 @@
     <string name="logo_large">logo_large</string>
     <string name="picture_info_screen">picture_info_screen</string>
     <string name="logo_telefoon">telefoon_logo</string>
+    <string name="receiver">com.google.android.gms.location.sample.locationaddress.RECEIVER</string>
+    <string name="result_data_key">com.google.android.gms.location.sample.locationaddress.RESULT_DATA_KEY</string>
+    <string name="location_data_extra">com.google.android.gms.location.sample.locationaddress.LOCATION_DATA_EXTRA</string>
 </resources>

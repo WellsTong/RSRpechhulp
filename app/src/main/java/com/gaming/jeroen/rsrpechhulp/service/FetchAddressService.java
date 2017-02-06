@@ -8,11 +8,8 @@ import android.os.Bundle;
 import android.os.ResultReceiver;
 import android.text.TextUtils;
 import android.util.Log;
-
 import com.gaming.jeroen.rsrpechhulp.R;
-import com.gaming.jeroen.rsrpechhulp.util.Constants;
 import com.google.android.gms.maps.model.LatLng;
-
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,14 +17,11 @@ import java.util.Locale;
 
 
 public class FetchAddressService extends IntentService {
-    private final String TAG = "FetchAddressService";
-    protected ResultReceiver mReceiver;
-    private final int NUMBER_OF_ADDRESSES = 1;
+    private ResultReceiver mReceiver;
 
-   public FetchAddressService(){
-       super("FetchAddressService");
-   }
-
+    public FetchAddressService() {
+        super("FetchAddressService");
+    }
 
 
     @Override
@@ -38,37 +32,40 @@ public class FetchAddressService extends IntentService {
         Geocoder geocoder = new Geocoder(this, Locale.getDefault());
 
         // latitude en longitude verkrijgen uit intent
-        mReceiver = intent.getParcelableExtra(Constants.RECEIVER);
-        LatLng location = intent.getParcelableExtra(Constants.LOCATION_DATA_EXTRA);
+        mReceiver = intent.getParcelableExtra(getApplicationContext().getResources().getString(R.string.receiver));
+        LatLng location = intent.getParcelableExtra(getApplicationContext().getResources().getString(R.string.location_data_extra));
 
         List<Address> addresses = null;
 
-        try{
-            // mogelijke adressen binnenhalen, in dit geval maar
+        String TAG = "FetchAddressService";
+        try {
+
+            // mogelijke adressen binnenhalen, in dit geval maar 1
+
             addresses = geocoder.getFromLocation(
                     location.latitude,
                     location.longitude,
-                    NUMBER_OF_ADDRESSES );
+                    getApplicationContext().getResources().getInteger(R.integer.number_of_addresses));
 
-        }catch (IOException e){
+        } catch (IOException e) {
             errorMessage = getString(R.string.service_not_available);
             Log.e(TAG, errorMessage, e);
-        }catch (IllegalArgumentException illegalArgument){
+        } catch (IllegalArgumentException illegalArgument) {
             errorMessage = getString(R.string.invalid_lat_long_used);
             Log.e(TAG, errorMessage + ". " +
-            "Latitude = " + location.latitude + ", longitude = "
+                    "Latitude = " + location.latitude + ", longitude = "
                     + location.longitude, illegalArgument);
         }
 
 
-        if (addresses == null || addresses.size()  == 0) {
+        if (addresses == null || addresses.size() == R.integer.zero) {
 
             // Als er geen adres gevonden is error bericht maken en loggen en resultaat opsturen
             if (errorMessage.isEmpty()) {
                 errorMessage = getString(R.string.no_address_found);
                 Log.e(TAG, errorMessage);
             }
-            deliverResultToReceiver(Constants.FAILURE_RESULT, errorMessage);
+            deliverResultToReceiver(getResources().getInteger(R.integer.faillure_result), errorMessage);
         } else {
             Address address = addresses.get(0);
             ArrayList<String> addressFragments = new ArrayList<>();
@@ -78,16 +75,16 @@ public class FetchAddressService extends IntentService {
             for (int i = 0; i < address.getMaxAddressLineIndex(); i++) {
                 addressFragments.add(address.getAddressLine(i));
             }
-            deliverResultToReceiver(Constants.SUCCESS_RESULT,
+            deliverResultToReceiver(getResources().getInteger(R.integer.succes_result),
                     TextUtils.join(System.getProperty("line.separator"),
                             addressFragments));
         }
     }
 
-          // resultaat geocoder en eventuelen adressen opsturen
-    private void deliverResultToReceiver(int resultCode, String message){
+    // resultaat geocoder en eventuelen adressen opsturen
+    private void deliverResultToReceiver(int resultCode, String message) {
         Bundle bundle = new Bundle();
-        bundle.putString(Constants.RESULT_DATA_KEY, message);
+        bundle.putString(getString(R.string.result_data_key), message);
         mReceiver.send(resultCode, bundle);
     }
 }

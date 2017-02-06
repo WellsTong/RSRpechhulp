@@ -14,7 +14,6 @@ import android.os.Bundle;
 import android.provider.Settings;
 import android.support.v4.app.ActivityCompat;
 import android.support.v4.content.ContextCompat;
-import android.util.Log;
 
 import com.gaming.jeroen.rsrpechhulp.R;
 import com.gaming.jeroen.rsrpechhulp.fragments.RSRMapFragment;
@@ -25,18 +24,16 @@ import java.util.ArrayList;
 
 public class LocationHelper implements LocationListener {
 
-    private String TAG = "LocationHelper";
     private final Context context;
     private final Activity activity;
     private final RSRMapFragment rsrMap;
     private LocationManager locationManager;
     private boolean isGPSEnabled = false;
-    private boolean isNetworkEnabled = false;
     private int updateTime;
     private int updateDistance;
     private int maxSizeArraylist;
     private int arrayListSize;
-    private ArrayList<LatLng> positions = new ArrayList<>();
+    private final ArrayList<LatLng> positions = new ArrayList<>();
 
 
     public LocationHelper(Context context, Activity activity, RSRMapFragment rsrMap) {
@@ -51,7 +48,7 @@ public class LocationHelper implements LocationListener {
     private void setUpdateValues(){
         this.updateTime = context.getResources().getInteger(R.integer.update_time_start);
         this.updateDistance = context.getResources().getInteger(R.integer.update_distance_start);
-        this.maxSizeArraylist = context.getResources().getInteger(R.integer.array_list_size_to_start);
+        this.maxSizeArraylist = context.getResources().getInteger(R.integer.intial_location_array_list_size);
         this.arrayListSize = maxSizeArraylist;
     }
 
@@ -65,9 +62,9 @@ public class LocationHelper implements LocationListener {
 
             // als er geen toestemming is die aan gebruiker vragen
             ActivityCompat.requestPermissions(activity,
-                    new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION}, Constants.REQUEST_FINE_LOCATION_STATE);
+                    new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION}, context.getResources().getInteger(R.integer.request_fine_location_state));
             ActivityCompat.requestPermissions(activity,
-                    new String[]{android.Manifest.permission.ACCESS_COARSE_LOCATION}, Constants.REQUEST_COARSE_LOCATION_STATE);
+                    new String[]{android.Manifest.permission.ACCESS_COARSE_LOCATION}, context.getResources().getInteger(R.integer.request_coarse_location_state));
             return;
         }
 
@@ -78,7 +75,7 @@ public class LocationHelper implements LocationListener {
                     .getSystemService(Context.LOCATION_SERVICE);
 
             // checken of er network en GPS toegang is
-            isNetworkEnabled = locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
+            boolean isNetworkEnabled = locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
             isGPSEnabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
 
             // als er netwerk toegang is deze initialiseren
@@ -105,15 +102,15 @@ public class LocationHelper implements LocationListener {
         alertDialogBuilder
                 .setMessage(R.string.geen_gps)
                 .setCancelable(false)
-                .setPositiveButton("Ga naar instellingen",
+                .setPositiveButton(context.getResources().getText(R.string.gps_alert_positve_button_text),
                         new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int id) {
                                 Intent callGPSsettings = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-                                activity.startActivityForResult(callGPSsettings, Constants.REQUEST_FINE_LOCATION_STATE);
+                                activity.startActivityForResult(callGPSsettings, context.getResources().getInteger(R.integer.request_fine_location_state) );
                             }
                         });
-        alertDialogBuilder.setNegativeButton("Annuleren",
+        alertDialogBuilder.setNegativeButton(context.getResources().getText(R.string.annuleren_text),
                 new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -123,7 +120,10 @@ public class LocationHelper implements LocationListener {
                 });
         AlertDialog alertDialog = alertDialogBuilder.create();
         alertDialog.show();
-        alertDialog.getWindow().setLayout(ActionBar.LayoutParams.WRAP_CONTENT, ActionBar.LayoutParams.WRAP_CONTENT);
+
+        if(alertDialog.getWindow() != null){
+            alertDialog.getWindow().setLayout(ActionBar.LayoutParams.WRAP_CONTENT, ActionBar.LayoutParams.WRAP_CONTENT);
+        }
     }
 
     // locatie updates uitzetten als app stopt
@@ -168,8 +168,8 @@ public class LocationHelper implements LocationListener {
 
         int arraySize = positions.size();
 
-        double lat = 0;
-        double lon = 0;
+        double lat = context.getResources().getInteger(R.integer.zero);
+        double lon = context.getResources().getInteger(R.integer.zero);
         for (LatLng pos : positions) {
             lat += pos.latitude;
             lon += pos.longitude;
@@ -183,12 +183,13 @@ public class LocationHelper implements LocationListener {
             positions.clear();
             positions.add(newPosition);
             arrayListSize = context.getResources().getInteger(R.integer.array_list_size_running);
-            updateTime = context.getResources().getInteger(R.integer.update_time_running);
+            updateTime = context.getResources().getInteger(R.integer.update_time_running_in_milliseconds);
             updateDistance = context.getResources().getInteger(R.integer.update_distance_running);
             initLocationMananger();
         }
 
-        rsrMap.updateLocation(newPosition);
+            rsrMap.updateLocation(newPosition);
+
     }
 
     @Override
@@ -196,14 +197,11 @@ public class LocationHelper implements LocationListener {
     }
 
     @Override
-    public void onProviderEnabled(String provider) {
-        Log.d(TAG, "onProviderEnabled");
+    public void onProviderEnabled(String provider){
     }
 
     @Override
     public void onProviderDisabled(String provider) {
-        Log.d(TAG, "onProviderDisabled");
     }
-
 
 }

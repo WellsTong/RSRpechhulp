@@ -9,8 +9,6 @@ import com.gaming.jeroen.rsrpechhulp.R;
 
 public class SplashActivity extends Activity {
 
-    private final int SPLASH_TIME = 800;
-
     //splash screen tonen en 800 milliseconden laten zien
 
     @Override
@@ -18,6 +16,7 @@ public class SplashActivity extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.splash_screen);
 
+        int SPLASH_TIME = 800;
         new Handler().postDelayed(new Runnable() {
 
             @Override

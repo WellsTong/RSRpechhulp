@@ -28,7 +28,7 @@ public class InfoFragment extends Fragment {
         // als apparaat telefoon heeft de infobutton op toolbar onzichtbaar maken
         if(RSRMainActivity.hasPhone){
             ImageButton infoButton = (ImageButton) getActivity().findViewById(R.id.info_button);
-            infoButton.setImageAlpha(0);
+            infoButton.setImageAlpha(getActivity().getResources().getInteger(R.integer.image_alpha_zero));
         }
 
         Toolbar toolbar = (Toolbar) getActivity().findViewById(R.id.main_bar);

@@ -3,7 +3,6 @@
     android:id="@+id/info_screen"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/whiteBackGround"
     android:orientation="vertical">
 
     <ImageView
@@ -19,6 +18,7 @@
         android:id="@+id/info_text_view"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/whiteBackGround"
         android:paddingLeft="@dimen/text_padding"
         android:paddingRight="@dimen/text_padding"
         android:paddingTop="@dimen/text_padding"

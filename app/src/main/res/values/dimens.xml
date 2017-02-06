@@ -1,26 +1,32 @@
 <resources>
     <!-- Default screen margins, per the Android Design guidelines. -->
-    <dimen name="activity_horizontal_margin">0dp</dimen>
-    <dimen name="activity_vertical_margin">0dp</dimen>
+
+
     <dimen name="toolbar_height">55dip</dimen>
     <dimen name="text_padding">20dp</dimen>
-    <dimen name="toolbar_padding">5dp</dimen>
     <dimen name="small_text_size">12sp</dimen>
     <dimen name="normal_text_size">17sp</dimen>
     <dimen name="big_text_size">21sp</dimen>
-    <dimen name="button_width">280sp</dimen>
     <dimen name="frame_padding">30dp</dimen>
-    <dimen name="padding_bottom">60dp</dimen>
-    <dimen name="padding_bottom_telefoon_screen">57dp</dimen>
-
     <item name="zoom_value" type="dimen" format="float">17.0</item>
     <item name="bearing_value" type="dimen" format="float">0.0</item>
-
+    <integer name="zero">0</integer>
+    <integer name="number_of_addresses">1</integer>
+    <integer name="faillure_result">1</integer>
+    <integer name="succes_result">0</integer>
+    <integer name="request_fine_location_state">2</integer>
+    <integer name="request_coarse_location_state">3</integer>
+    <integer name="request_call_phone">4</integer>
+    <integer name="image_alpha_zero">0</integer>
+    <integer name="image_alpha_max">255</integer>
+    <integer name="root_value">0</integer>
     <integer name="update_time_start">0</integer>
-    <integer name="update_time_running">30000</integer>
+    <integer name="update_time_running_in_milliseconds">30000</integer>
     <integer name="update_distance_start" >0</integer>
     <integer name="update_distance_running">20</integer>
-    <integer name="array_list_size_to_start">10</integer>
+    <integer name="intial_location_array_list_size">10</integer>
     <integer name="array_list_size_running">3</integer>
+    <integer name="height_custom_marker">110</integer>
+    <bool name="intial_hasPhone_value">false</bool>
 
 </resources>
