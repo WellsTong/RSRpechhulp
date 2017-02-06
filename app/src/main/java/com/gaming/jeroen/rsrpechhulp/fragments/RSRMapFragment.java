@@ -245,8 +245,8 @@ public class RSRMapFragment extends Fragment implements
     private void setAddress(String s) {
         if (s != ""){
             this.addressString = s;
-            adresTextView.setText(s);
         }
+        adresTextView.setText(addressString);
     }
 
     // result receiver class om adres te ontvanger
