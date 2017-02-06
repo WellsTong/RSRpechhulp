@@ -243,7 +243,7 @@ public class RSRMapFragment extends Fragment implements
 
 
     private void setAddress(String s) {
-        if (s != ""){
+        if (!s.equals("")){
             this.addressString = s;
         }
         adresTextView.setText(addressString);
