@@ -15,8 +15,8 @@
         android:layout_height="?attr/actionBarSize"
         android:layout_gravity="end"
         android:background="@drawable/btn_bg"
-        android:paddingEnd="10dp"
-        android:paddingStart="3dp"
+        android:paddingEnd="@dimen/padding_start_toolbar"
+        android:paddingStart="@dimen/padding_end_toolbar"
         android:title="@string/main_toolbar_text"
         tools:context="com.gaming.jeroen.rsrpechhulp.activities.RSRMainActivity">
 

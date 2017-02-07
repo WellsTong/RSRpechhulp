@@ -15,6 +15,8 @@
     <dimen name="telephone_text2_large_padding_bottom">40dp</dimen>
     <dimen name="splash_screen_large_padding_top">100dip</dimen>
     <dimen name="splash_screen_large_padding_bottom">30dip</dimen>
+    <dimen name="telephone_view_margin_bottom">-20dp</dimen>
+    <dimen name="telephone_view_padding_large">20dp</dimen>
 
 
 </resources>

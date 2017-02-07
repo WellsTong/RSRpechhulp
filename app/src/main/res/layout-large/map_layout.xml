@@ -17,10 +17,10 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginBottom="-20dp"
+        android:layout_marginBottom="@dimen/telephone_view_margin_bottom"
         android:background="@drawable/popup_bg"
         android:orientation="vertical"
-        android:padding="20dp">
+        android:padding="@dimen/telephone_view_padding_large">
 
         <TextView
             android:id="@+id/telefoon_text1"

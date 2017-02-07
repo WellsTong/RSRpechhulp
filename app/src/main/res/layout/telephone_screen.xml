@@ -29,7 +29,7 @@
         android:background="@color/RSRgroen"
         android:orientation="vertical"
         android:weightSum="@integer/telephone_view_weight_sum"
-        android:padding="@dimen/telephone_view_padding">
+        android:padding="@dimen/telephone_view_padding_large">
 
         <TextView
             android:layout_width="wrap_content"

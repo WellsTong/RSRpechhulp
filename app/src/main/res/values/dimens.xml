@@ -21,7 +21,7 @@
     <dimen name="cancel_telephone_min_height">0dp</dimen>
     <dimen name="cancel_telephone_padding">3dp</dimen>
     <dimen name="telephone_view_height">150dp</dimen>
-    <dimen name="telephone_view_padding">5dp</dimen>
+    <dimen name="telephone_view_padding_large">5dp</dimen>
     <dimen name="zero_dp">0dp</dimen>
     <dimen name="belkosten_view_padding_bottom">1dp</dimen>
     <dimen name="belkosten_text_padding_bottom">3dp</dimen>
