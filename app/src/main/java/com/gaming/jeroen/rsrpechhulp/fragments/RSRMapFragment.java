@@ -264,7 +264,7 @@ public class RSRMapFragment extends Fragment implements
             this.activity = activity;
         }
 
-        /* adres data ontvangen van FetchaddressService en bij succes adres string updaten (setAddress()) */
+        /* adres data ontvangen van FetchaddressService en bij succes adres string updaten (setAddress())   */
 
         @Override
         protected void onReceiveResult(int resultCode, Bundle resultData) {
