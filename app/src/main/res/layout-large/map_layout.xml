@@ -48,7 +48,6 @@
                         android:src="@drawable/main_btn_tel"
                         android:contentDescription="@string/logo_telefoon" />
 
-
                     <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"

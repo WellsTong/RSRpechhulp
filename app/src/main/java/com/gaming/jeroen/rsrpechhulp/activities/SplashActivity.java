@@ -9,7 +9,7 @@ import com.gaming.jeroen.rsrpechhulp.R;
 
 public class SplashActivity extends Activity {
 
-    //splash screen tonen en 800 milliseconden laten zien
+    /* splash screen tonen en 800 milliseconden laten zien */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +23,6 @@ public class SplashActivity extends Activity {
                 startActivity(new Intent(SplashActivity.this, RSRMainActivity.class));
                 SplashActivity.this.finish();
             }
-        },  getResources().getInteger(R.integer.splash_time));
+        },  getResources().getInteger(R.integer.splash_time_start_screen));
     }
 }

@@ -17,14 +17,16 @@ public class InfoFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.info_screen, container, false);
 
-        // toolbar instellen
+        /* toolbar instellen */
         setToolBar();
         return view;
     }
 
     private void setToolBar(){
-        // als apparaat telefoon heeft de infobutton op toolbar onzichtbaar maken
-        if(RSRMainActivity.hasPhone){
+
+        /* als apparaat telefoon mogelijkheden heeft
+         de infobutton op toolbar onzichtbaar maken */
+        if(((RSRMainActivity)getActivity()).isHasPhone()){
             ImageButton infoButton = (ImageButton) getActivity().findViewById(R.id.info_button);
             infoButton.setImageAlpha(getActivity().getResources().getInteger(R.integer.image_alpha_zero));
         }
@@ -33,7 +35,7 @@ public class InfoFragment extends Fragment {
         toolbar.setNavigationIcon(R.drawable.menu_arrow);
         toolbar.setTitle(R.string.over_rsr_text);
 
-        // back button op toolbar initialiseren
+        /* back button op toolbar initialiseren */
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

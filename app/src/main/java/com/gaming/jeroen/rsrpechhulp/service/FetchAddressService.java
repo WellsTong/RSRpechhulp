@@ -27,10 +27,10 @@ public class FetchAddressService extends IntentService {
     protected void onHandleIntent(Intent intent) {
         String errorMessage = "";
 
-        // geocoder om adres te verkrijgen initialiseren
+        /* geocoder om adres te verkrijgen initialiseren */
         Geocoder geocoder = new Geocoder(this, Locale.getDefault());
 
-        // latitude en longitude verkrijgen uit intent
+        /* latitude en longitude verkrijgen uit intent */
         mReceiver = intent.getParcelableExtra(getApplicationContext().getResources().getString(R.string.receiver));
         LatLng location = intent.getParcelableExtra(getApplicationContext().getResources().getString(R.string.location_data_extra));
 
@@ -39,12 +39,12 @@ public class FetchAddressService extends IntentService {
         String TAG = "FetchAddressService";
         try {
 
-            // mogelijke adressen binnenhalen, in dit geval maar 1
+            /*  mogelijke adres(sen) binenhalen, in dit geval maar 1 */
 
             addresses = geocoder.getFromLocation(
                     location.latitude,
                     location.longitude,
-                    getApplicationContext().getResources().getInteger(R.integer.number_of_addresses));
+                    1);
 
         } catch (IOException e) {
             errorMessage = getString(R.string.service_not_available);
@@ -59,7 +59,8 @@ public class FetchAddressService extends IntentService {
 
         if (addresses == null || addresses.size() == R.integer.zero) {
 
-            // Als er geen adres gevonden is error bericht maken en loggen en resultaat opsturen
+            /* Als er geen adres gevonden is error bericht maken en loggen,
+            resultaat opsturen */
             if (errorMessage.isEmpty()) {
                 errorMessage = getString(R.string.no_address_found);
                 Log.e(TAG, errorMessage);
@@ -69,18 +70,20 @@ public class FetchAddressService extends IntentService {
             Address address = addresses.get(0);
             ArrayList<String> addressFragments = new ArrayList<>();
 
-            // Adressen verkrijgen en aan string arraylist toevoegen
-            // en vervolgens opsturen naar ontvanger
+           /* Adres verkrijgen en aan string arraylist toevoegen
+            en vervolgens opsturen naar ontvanger  */
             for (int i = 0; i < address.getMaxAddressLineIndex(); i++) {
                 addressFragments.add(address.getAddressLine(i));
             }
+            addressFragments.add(address.getCountryName());
+
             deliverResultToReceiver(getResources().getInteger(R.integer.succes_result),
                     TextUtils.join(System.getProperty("line.separator"),
                             addressFragments));
         }
     }
 
-    // resultaat geocoder en eventuelen adressen opsturen
+     /* resultaat geocoder en eventuelen adressen opsturen */
     private void deliverResultToReceiver(int resultCode, String message) {
         Bundle bundle = new Bundle();
         bundle.putString(getString(R.string.result_data_key), message);

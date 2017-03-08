@@ -52,7 +52,7 @@
     <integer name="intial_location_array_list_size">10</integer>
     <integer name="array_list_size_running">3</integer>
     <integer name="height_custom_marker">110</integer>
-    <integer name="splash_time">800</integer>
+    <integer name="splash_time_start_screen">800</integer>
     <integer name="intial_latitude">52</integer>
     <integer name="intial_longitude">4</integer>
 

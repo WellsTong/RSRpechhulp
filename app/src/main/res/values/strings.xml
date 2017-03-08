@@ -10,7 +10,7 @@
         diverse hulpmiddelen uitproberen en rustig bekijken wat goed bij uw situatie aansluit. Samen
         met u zoeken we naar het hulpmiddel dat bij u past. RSR maakt mensen mobiel. </string>
 
-    <string name="adres_text_map_popup">adres verkrijgen</string>
+    <string name="address_text_map_popup">adres verkrijgen</string>
     <string name="probeer_opnieuw_text">Probeer opnieuw</string>
     <string name="gps_alert_positve_button_text">Ga naar instellingen</string>
     <string name="info_text_in_map_popup">Onthoud deze locatie voor het\ntelefoongesprek.</string>

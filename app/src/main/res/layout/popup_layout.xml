@@ -20,7 +20,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:text="@string/adres_text_map_popup"
+        android:text="@string/address_text_map_popup"
         android:textAlignment="center"
         android:textSize="@dimen/normal_text_size"
         android:textStyle="normal|bold" />

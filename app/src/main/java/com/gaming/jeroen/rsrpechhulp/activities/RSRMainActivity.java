@@ -31,20 +31,20 @@ public class RSRMainActivity extends AppCompatActivity implements FragmentManage
     private Button infoButton;
     private RSRMapFragment rsrMap;
     private LocationHelper locationHelper;
-    public static boolean hasPhone;
+    private boolean hasPhone;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main_screen);
 
-        // verschillende onderdelen initialiseren
+        /* verschillende onderdelen initialiseren */
         initialize();
     }
 
     private void initialize() {
-        // initialiseren hasPhone value (flase)
-        RSRMainActivity.hasPhone = getResources().getBoolean(R.bool.intial_hasPhone_value);
+        /* initialiseren hasPhone value (false) */
+        hasPhone = getResources().getBoolean(R.bool.intial_hasPhone_value);
 
         initializePackageManager();
 
@@ -54,37 +54,37 @@ public class RSRMainActivity extends AppCompatActivity implements FragmentManage
     }
 
     private void initializeFragmentsAndButtons() {
-        // initialiseren fragments
+        /* initialiseren fragments */
         infoFragment = new InfoFragment();
         rsrMap = new RSRMapFragment();
 
-        // button main layout initialeren
+        /* button main layout initialeren */
         initButtons();
 
-        // custom toolbar opzetten
+        /* custom toolbar opzetten */
         setToolBar();
     }
 
     private void initializePackageManager() {
-        // controleren of apparaat telefoon heeft en vastleggen
+        /* controleren of apparaat telefoon heeft en vastleggen */
         PackageManager packageManager = getPackageManager();
         if (packageManager.hasSystemFeature(PackageManager.FEATURE_TELEPHONY)) {
-            RSRMainActivity.hasPhone = true;
+            hasPhone = true;
 
-            // als apparaat telefoon heeft permissie controleren
+        /* als apparaat telefoon heeft permissie controleren */
             checkPermissionPhoneCall();
         } else {
-            RSRMainActivity.hasPhone = false;
+            hasPhone = false;
         }
 
-        // initialiseren fargmentmanager en BackStackListeneer
+        /* initialiseren fargmentmanager en BackStackListeneer */
         manager = this.getSupportFragmentManager();
         manager.addOnBackStackChangedListener(this);
     }
 
     private boolean checkInternetAccess() {
 
-        // controleren of apparaat internettoegang heeft
+        /* controleren of apparaat internettoegang heeft */
         ConnectivityManager connectivityManager = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo networkInfo = connectivityManager.getActiveNetworkInfo();
         return networkInfo != null && networkInfo.isConnectedOrConnecting();
@@ -92,29 +92,30 @@ public class RSRMainActivity extends AppCompatActivity implements FragmentManage
 
     private void initGPSandNetwork() {
 
-        // internet toegang controleren
+        /* internet toegang controleren */
         boolean access = checkInternetAccess();
         if (!access) {
 
-            // waarneer geen internet gebruiker vragen internet beschikbaar te maken
+        /* als er geen internet beschikbaar is,
+         gebruiker vragen internet beschikbaar te maken */
             showNetworkDialog();
         }
 
-        // locatie class initialiseren
+        /* locatie class initialiseren */
         locationHelper = new LocationHelper(getApplicationContext(), this, rsrMap);
 
-        // als GSP uit staat gebruiker vragen GPS aan te zetten
+        /* als GSP uit staat gebruiker vragen GPS aan te zetten */
         if (!locationHelper.isGPSEnabled()) {
             locationHelper.showSettingGPS();
         }
     }
 
-    // internet toegang en GPS controleren
+    /* internet toegang en GPS controleren */
     private boolean checkConnectivity() {
         return checkInternetAccess() && locationHelper.isGPSAvailable() && locationHelper.isNetworAvailable();
     }
 
-    // alarmbutton initialiseren en functie vastleggen
+    /* alarmbutton initialiseren en functie vastleggen */
     private void initButtons() {
         alarmButton = (Button) this.findViewById(R.id.alarm_button);
 
@@ -130,8 +131,8 @@ public class RSRMainActivity extends AppCompatActivity implements FragmentManage
             }
         });
 
-        // als apparaat geen telefoon magelijkheden heeft infobutton initiailiseren
-        if (!RSRMainActivity.hasPhone) {
+        /* als apparaat geen telefoon magelijkheden heeft infobutton initiailiseren */
+        if (!hasPhone) {
             infoButton = (Button) this.findViewById(R.id.info_button_large);
 
             infoButton.setOnClickListener(new View.OnClickListener() {
@@ -148,7 +149,7 @@ public class RSRMainActivity extends AppCompatActivity implements FragmentManage
         }
     }
 
-    // toolbar instellen
+    /* toolbar instellen */
     private void setToolBar() {
         Toolbar toolbar = (Toolbar) findViewById(R.id.main_bar);
         setSupportActionBar(toolbar);
@@ -160,8 +161,8 @@ public class RSRMainActivity extends AppCompatActivity implements FragmentManage
 
         getSupportActionBar().setTitle(R.string.main_toolbar_text);
 
-        // als apparaat telefoon heeft infobutton op toolbar inialiseren
-        if (RSRMainActivity.hasPhone) {
+        /* als apparaat telefoon mogelijkheden heeft infobutton op toolbar inialiseren */
+        if (hasPhone) {
             ImageButton infoButton = (ImageButton) findViewById(R.id.info_button);
             infoButton.setImageAlpha(getResources().getInteger(R.integer.image_alpha_max));
             infoButton.setOnClickListener(new View.OnClickListener() {
@@ -178,7 +179,7 @@ public class RSRMainActivity extends AppCompatActivity implements FragmentManage
         }
     }
 
-    // gebruiker vragen internetverbinding te maken
+    /* gebruiker vragen internetverbinding te maken */
     private void showNetworkDialog() {
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this, android.R.style.Theme_Black);
         alertDialogBuilder
@@ -207,7 +208,7 @@ public class RSRMainActivity extends AppCompatActivity implements FragmentManage
         }
     }
 
-    // gebruiker vragen of deze app gebruik mag maken van telefoon diensten
+    /* gebruiker vragen of deze app gebruik mag maken van telefoon diensten */
     private void checkPermissionPhoneCall() {
         if (ContextCompat.checkSelfPermission(this, android.Manifest.permission.CALL_PHONE)
                 != PackageManager.PERMISSION_GRANTED) {
@@ -219,16 +220,17 @@ public class RSRMainActivity extends AppCompatActivity implements FragmentManage
 
     @Override
     public void onBackStackChanged() {
-        // bij elke wissel van fragment controleren of de verbindingen nog actief zijn
-        // zo niet dan opnieuw initialiseren
+
+         /* bij elke wissel van fragment controleren of de verbindingen nog actief zijn
+         zo niet dan opnieuw initialiseren */
         if (!checkConnectivity()) {
             initGPSandNetwork();
         }
 
-        // index backstack opvragen
+        /* index backstack opvragen */
         int index = manager.getBackStackEntryCount();
 
-        // als index is root-value (0) alarmbutton zichtbaar maken en toolbar instellen
+        /* als index 0 is (root_velue), alarmbutton zichtbaar maken en toolbar instellen */
         if (index == getResources().getInteger(R.integer.root_value)) {
             if (alarmButton != null) {
                 alarmButton.setVisibility(View.VISIBLE);
@@ -251,7 +253,7 @@ public class RSRMainActivity extends AppCompatActivity implements FragmentManage
 
     }
 
-    // als gebruiker instellingen heeft veranderd opnieuw GPS en internet initialiseren
+    /* als gebruiker instellingen heeft veranderd opnieuw GPS en internet initialiseren */
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == getResources().getInteger(R.integer.request_fine_location_state)) {
@@ -262,13 +264,17 @@ public class RSRMainActivity extends AppCompatActivity implements FragmentManage
     @Override
     protected void onResume() {
         locationHelper.initLocationMananger();
-        super.onPostResume();
+        super.onResume();
     }
 
-    // als app wordt gestop locatie updates uitzetten
+    /* als app wordt gestop locatie updates uitzetten */
     @Override
     protected void onPause() {
         locationHelper.stopLocationUpdates();
         super.onPause();
+    }
+
+    public boolean isHasPhone() {
+        return hasPhone;
     }
 }

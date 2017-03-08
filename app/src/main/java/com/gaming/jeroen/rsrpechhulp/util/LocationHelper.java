@@ -31,7 +31,7 @@ public class LocationHelper implements LocationListener {
     private int updateDistance;
     private int maxSizeArraylist;
     private int arrayListSize;
-    private final ArrayList<LatLng> positions = new ArrayList<>();
+    private final ArrayList<LatLng> positionsArrayList = new ArrayList<>();
 
 
     public LocationHelper(Context context, Activity activity, RSRMapFragment rsrMap) {
@@ -43,6 +43,7 @@ public class LocationHelper implements LocationListener {
         initLocationMananger();
     }
 
+    /* initialiseren van diverse start waardes */
     private void setUpdateValues(){
         this.updateTime = context.getResources().getInteger(R.integer.update_time_start);
         this.updateDistance = context.getResources().getInteger(R.integer.update_distance_start);
@@ -52,13 +53,14 @@ public class LocationHelper implements LocationListener {
 
 
     public void initLocationMananger() {
-        // controleren of app toestemming heeft voor GPS en netwerk locatie
+
+        /* controleren of app toestemming heeft voor GPS en netwerk locatie */
         if (ContextCompat.checkSelfPermission(context, android.Manifest.permission.ACCESS_FINE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED
                 && ContextCompat.checkSelfPermission(context, android.Manifest.permission.ACCESS_COARSE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED) {
 
-            // als er geen toestemming is die aan gebruiker vragen
+            /* als er geen toestemming is die aan gebruiker vragen */
             ActivityCompat.requestPermissions(activity,
                     new String[]{android.Manifest.permission.ACCESS_FINE_LOCATION}, context.getResources().getInteger(R.integer.request_fine_location_state));
             ActivityCompat.requestPermissions(activity,
@@ -68,21 +70,21 @@ public class LocationHelper implements LocationListener {
 
 
         try {
-            // locationonmanager initialiseren
+            /* locationonmanager initialiseren */
             locationManager = (LocationManager) context
                     .getSystemService(Context.LOCATION_SERVICE);
 
-            // checken of er network en GPS toegang is
+            /* checken of er network en GPS toegang is */
             boolean isNetworkEnabled = locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
             isGPSEnabled = locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
 
-            // als er netwerk toegang is deze initialiseren
+            /* als er netwerk toegang is deze initialiseren */
             if (isNetworkEnabled) {
                 locationManager.requestLocationUpdates(LocationManager.NETWORK_PROVIDER,
                         updateTime, updateDistance, this);
             }
 
-            // als er GPS toegang is deze initialiseren
+            /* als er GPS toegang is deze initialiseren */
             if (isGPSEnabled) {
                 locationManager.requestLocationUpdates(LocationManager.GPS_PROVIDER,
                         updateTime, updateDistance, this);
@@ -92,8 +94,8 @@ public class LocationHelper implements LocationListener {
         }
     }
 
-    // als GPS uitstaat gebruiker naar GPS instellingen brengen
-    // alertdialog venster beetje gecustomized
+     /* als GPS uitstaat gebruiker naar GPS instellingen brengen.
+        alertdialog venster gecustomized */
     public void showSettingGPS() {
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(activity, android.R.style.Theme_Black);
 
@@ -105,9 +107,11 @@ public class LocationHelper implements LocationListener {
                             @Override
                             public void onClick(DialogInterface dialog, int id) {
                                 Intent callGPSsettings = new Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS);
-                                activity.startActivityForResult(callGPSsettings, context.getResources().getInteger(R.integer.request_fine_location_state) );
+                                activity.startActivityForResult(callGPSsettings,
+                                        context.getResources().getInteger(R.integer.request_fine_location_state) );
                             }
                         });
+
         alertDialogBuilder.setNegativeButton(context.getResources().getText(R.string.annuleren_text),
                 new DialogInterface.OnClickListener() {
                     @Override
@@ -124,7 +128,7 @@ public class LocationHelper implements LocationListener {
         }
     }
 
-    // locatie updates uitzetten als app stopt
+    /* locatie updates uitzetten als app stopt */
     public void stopLocationUpdates() {
         if (ActivityCompat.checkSelfPermission(activity, android.Manifest.permission.ACCESS_FINE_LOCATION)
                 != PackageManager.PERMISSION_GRANTED
@@ -135,12 +139,12 @@ public class LocationHelper implements LocationListener {
         locationManager.removeUpdates(this);
     }
 
-    // controleren of netwerk beschikbaar is
+    /* controleren of netwerk beschikbaar is */
     public boolean isNetworAvailable() {
         return locationManager.isProviderEnabled(LocationManager.NETWORK_PROVIDER);
     }
 
-    // controleren of GPS beschikbaar is
+    /* controleren of GPS beschikbaar is */
     public boolean isGPSAvailable() {
         return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER);
     }
@@ -149,43 +153,45 @@ public class LocationHelper implements LocationListener {
         return isGPSEnabled;
     }
 
-    // nieuw binnen gekomen locatie aan lijst toevoegen en daar het gemiddelde van nemen
-    // en met dit gemiddelde de map location updaten
-    // als arraylist met positions een size van 10 heeft bereikt
-    // locatiamanager opnieuw initialiseren met nieuwe waardes
-    // en maximale size van arraylist verlagen naar 3
+    /* Nieuw binnen gekomen locatie aan lijst toevoegen en daar het gemiddelde van nemen
+     en met dit gemiddelde de map location updaten.
+     Als arraylist met positionsArrayList een size van 10 heeft bereikt
+     locatiamanager opnieuw initialiseren met nieuwe waardes:
+     - update time verhogen van 0 naar 3000 milliseconds
+     - distance verhogen van 0 meter naar 20 meter
+     en maximale size van arraylist verlagen van 10 naar 3. */
 
     @Override
     public void onLocationChanged(Location location) {
+
         LatLng newPosition = new LatLng(location.getLatitude(), location.getLongitude());
 
-        if (positions.size() >= arrayListSize) {
-            positions.remove(0);
+        if (positionsArrayList.size() >= arrayListSize) {
+            positionsArrayList.remove(0);
         }
-        positions.add(newPosition);
+        positionsArrayList.add(newPosition);
 
-        int arraySize = positions.size();
+        int arraySize = positionsArrayList.size();
 
         double lat = context.getResources().getInteger(R.integer.zero);
         double lon = context.getResources().getInteger(R.integer.zero);
-        for (LatLng pos : positions) {
+        for (LatLng pos : positionsArrayList) {
             lat += pos.latitude;
             lon += pos.longitude;
         }
-
         lat /= arraySize;
         lon /= arraySize;
         newPosition = new LatLng(lat, lon);
+        rsrMap.updateLocation(newPosition);
 
         if (arraySize == maxSizeArraylist) {
-            positions.clear();
-            positions.add(newPosition);
+            positionsArrayList.clear();
+            positionsArrayList.add(newPosition);
             arrayListSize = context.getResources().getInteger(R.integer.array_list_size_running);
             updateTime = context.getResources().getInteger(R.integer.update_time_running_in_milliseconds);
             updateDistance = context.getResources().getInteger(R.integer.update_distance_running);
             initLocationMananger();
         }
-            rsrMap.updateLocation(newPosition);
     }
 
     @Override

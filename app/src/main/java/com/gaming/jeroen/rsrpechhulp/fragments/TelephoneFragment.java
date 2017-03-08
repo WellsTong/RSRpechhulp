@@ -21,7 +21,8 @@ public class TelephoneFragment extends Fragment{
     }
 
     private void initializeComponents(View v){
-        // initialiseren buttons om te telefoneren of te cancellen
+
+        /* initialiseren buttons om te telefoneren of te cancellen */
         initCallButton(v);
     }
 
@@ -31,7 +32,7 @@ public class TelephoneFragment extends Fragment{
             @Override
             public void onClick(View v) {
 
-        // intent starten om te telefoneren
+        /* intent starten om te telefoneren */
                 Intent callIntent = new Intent(Intent.ACTION_CALL);
                 callIntent.setData(Uri.parse(getActivity().getResources().getString(R.string.telephone_number)));
                 startActivity(callIntent);
